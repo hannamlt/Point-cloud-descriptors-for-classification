@@ -1,17 +1,50 @@
-# 3D Point Cloud Analysis and Processing
+# 3D Point Cloud Descriptors for Semantic Segmentation
 
-Ce projet combine des techniques avancées d'analyse et de traitement de nuages de points 3D, incluant des mesures de compacité, de la classification, et de la squelettisation. Il utilise principalement la bibliothèque CGAL pour ses fonctionnalités.
+Research internship · Inria Sophia Antipolis 
+Contribution to the [CGAL open-source library](https://www.cgal.org/)
 
-## Fonctionnalités
+## Overview
 
-### Compactness
-- Calcul de mesures de compacité pour des nuages de points 3D
-- Classification de points 3D utilisant Random Forest
-- Génération de caractéristiques géométriques pour la classification
-- Évaluation des résultats de classification
+Novel topological descriptors for semantic segmentation of 3D point clouds, 
+implemented in C++ within the CGAL framework. Two complementary approaches 
+were developed and integrated as open-source contributions to CGAL.
 
-### Skeletonisation
-- Squelettisation de maillages 3D
-- Extraction de caractéristiques basées sur le squelette
-- Conversion de polylignes en nuage de points
-- Classification basée sur la squelettisation
+
+## Methods
+
+**3D Compactness Descriptor**  
+Extension of 2D compactness theory to 3D volumes. Quantifies spherical 
+similarity using volume/surface area ratio, computed via CGAL alpha-wrapping. 
+Scale and rotation invariant. Multi-scale analysis across multiple neighborhood radii.
+
+**Skeletonization Pipeline**  
+Mean curvature flow (MCF) skeletonization for medial axis extraction. 
+Distance-to-skeleton features capture topological hierarchy of branching structures 
+(e.g. tree trunks vs. foliage). Implemented using CGAL surface mesh skeletonization.
+
+
+## Results
+
+| Metric | Baseline | + Compactness descriptor |
+|--------|----------|--------------------------|
+| Accuracy | 98.58% | 99.57% (+1.0%) |
+| F1-score | 0.9888 | 0.9946 (+0.58%) |
+
+**Performance optimizations: 30%+ speedup** (5.2h → 3.5h) via k-d trees, 
+planimetric grids, and OpenMP parallelization.
+
+
+## Structure
+
+
+---
+
+## Stack
+
+`C++` `CGAL` `CMake` `OpenMP` `Random Forest`
+
+## Related
+
+- [CGAL Alpha Wrapping](https://doc.cgal.org/latest/Alpha_wrap_3/)
+- [CGAL Point Set Classification](https://doc.cgal.org/latest/Classification/)
+- [CGAL Surface Mesh Skeletonization](https://doc.cgal.org/latest/Surface_mesh_skeletonization/)
