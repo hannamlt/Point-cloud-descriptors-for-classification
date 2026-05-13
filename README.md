@@ -9,7 +9,6 @@ Novel topological descriptors for semantic segmentation of 3D point clouds,
 implemented in C++ within the CGAL framework. Two complementary approaches 
 were developed and integrated as open-source contributions to CGAL.
 
-
 ## Methods
 
 **3D Compactness Descriptor**  
@@ -22,7 +21,6 @@ Mean curvature flow (MCF) skeletonization for medial axis extraction.
 Distance-to-skeleton features capture topological hierarchy of branching structures 
 (e.g. tree trunks vs. foliage). Implemented using CGAL surface mesh skeletonization.
 
-
 ## Results
 
 | Metric | Baseline | + Compactness descriptor |
@@ -33,11 +31,10 @@ Distance-to-skeleton features capture topological hierarchy of branching structu
 **Performance optimizations: 30%+ speedup** (5.2h → 3.5h) via k-d trees, 
 planimetric grids, and OpenMP parallelization.
 
-
 ## Structure
 
-
----
+- `Compactness/` : 3D compactness measure + Random Forest classification
+- `Skeletonisation/` : MCF skeletonization + skeleton-based feature extraction
 
 ## Stack
 
